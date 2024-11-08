@@ -1,0 +1,98 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Food App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <style>
+    
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+   
+    
+    .food-item {
+      text-align: center;
+      margin: 10px;
+    }
+
+ 
+    
+    #food-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Filter Food Categories</h1>
+  </div>
+
+
+  
+  <div class="container-fluid">
+    <div class="buttons d-flex justify-content-end bg-dark text-white p-2">
+      <button class="btn btn-outline-light mx-2" onclick="filterFoods('All')">All</button>
+      <button class="btn btn-outline-light mx-2" onclick="filterFoods('Breakfast')">Breakfast</button>
+      <button class="btn btn-outline-light mx-2" onclick="filterFoods('Lunch')">Lunch</button>
+      <button class="btn btn-outline-light mx-2" onclick="filterFoods('Dinner')">Dinner</button>
+    </div>
+  </div>
+
+ 
+  
+  <div class="container">
+    <div id="food-list">
+      
+    </div>
+  </div>
+
+  <script>
+    const foods = [
+      { name: 'Dosa, Idli', category: 'Breakfast', image: 'https://thumbs.dreamstime.com/b/south-indian-breakfast-idli-dosa-chutney-indian-breakfast-lentil-rice-pancake-also-known-as-dosa-dumplings-known-as-idli-158574513.jpg' },
+      { name: 'Meals', category: 'Lunch', image: 'https://thepepper.in/wp-content/uploads/2019/02/South-Meals.jpg' },
+      { name: 'Chapathi', category: 'Dinner', image: 'https://c.ndtvimg.com/2022-03/jcliv9dg_shahi-paneer_625x300_15_March_22.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=886' }
+    ];
+
+    function displayFoods() {
+      const foodList = document.getElementById('food-list');
+      foodList.innerHTML = '';
+      foods.forEach(food => {
+        const foodDiv = document.createElement('div');
+        foodDiv.className = 'food-item';
+        foodDiv.dataset.category = food.category;
+        foodDiv.innerHTML = `<img src="${food.image}" alt="${food.name}"><h3>${food.name}</h3>`;
+        foodList.appendChild(foodDiv);
+      });
+    }
+
+    function filterFoods(category) {
+      const items = document.querySelectorAll('.food-item');
+      items.forEach(item => {
+        if (category === 'All' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    
+    displayFoods();
+    filterFoods('All');
+  </script>
+</body>
+</html>
+

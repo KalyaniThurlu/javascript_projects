@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <div id="display">
+        <input type="text" id="calculator-display" readonly>
+    </div>
+    <div>
+        <input type="button" value="AC" onclick="handleButtonClick('AC')">
+        <input type="button" value="Del" onclick="handleButtonClick('Del')">
+        <input type="button" value="%" onclick="handleButtonClick('%')">
+        <input type="button" value="*" onclick="handleButtonClick('*')">
+    </div>
+    <div>
+        <input type="button" value="7" onclick="handleButtonClick('7')">
+        <input type="button" value="8" onclick="handleButtonClick('8')">
+        <input type="button" value="9" onclick="handleButtonClick('9')">
+        <input type="button" value="-" onclick="handleButtonClick('-')">
+    </div>
+    <div>
+        <input type="button" value="4" onclick="handleButtonClick('4')">
+        <input type="button" value="5" onclick="handleButtonClick('5')">
+        <input type="button" value="6" onclick="handleButtonClick('6')">
+        <input type="button" value="+" onclick="handleButtonClick('+')">
+    </div>
+    <div>
+        <input type="button" value="1" onclick="handleButtonClick('1')">
+        <input type="button" value="2" onclick="handleButtonClick('2')">
+        <input type="button" value="3" onclick="handleButtonClick('3')">
+        <input type="button" value="=" onclick="handleButtonClick('=')">
+    </div>
+    <div>
+        <input type="button" value="0" onclick="handleButtonClick('0')">
+        <input type="button" value="00" onclick="handleButtonClick('00')">
+    </div>
+
+    <script>
+        let display = document.getElementById(calculator-display);
+        let currentInput = "";
+        
+        function handleButtonClick(value) {
+            switch(value) {
+                case "AC":
+                    currentInput = "";  // Clear the display
+                    break;
+                case "Del":
+                    currentInput = currentInput.slice(0, -1);  // Remove the last character
+                    break;
+                case "=":
+                    try {
+                        currentInput = eval(currentInput);  // Evaluate the expression
+                    } catch (error) {
+                        currentInput = "Error";  // Show error if invalid
+                    }
+                    break;
+                default:
+                    currentInput += value;  // Add the clicked value to the display
+            }
+            display.value = currentInput;  // Update the display
+        }
+    </script>
+</body>
+</html>

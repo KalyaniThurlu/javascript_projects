@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Dice Roller</title>
+    
+</head>
+<body>
+
+    <div >
+        <h1> Roll a Single Dice </h1>
+        <div  id="diceContainer">
+         
+            
+        </div>
+        <button  id="rollButton">Roll Dice</button>
+        <p id="result" >Click to roll the dice!</p>
+    </div>
+
+    <script>
+        function rollDice() {
+            return Math.floor(Math.random() * 6) + 1; 
+            
+        }
+
+        function displayDice() {
+            const diceContainer = document.getElementById('diceContainer');
+            diceContainer.innerHTML = ''; 
+
+            const rolledNumber = rollDice();
+            const diceImage = document.createElement('img');
+            diceImage.src = `https://www.random.org/dice/dice${rolledNumber}.png`; 
+            diceImage.alt = `Dice ${rolledNumber}`;
+            diceImage.style.width = '100px';
+            diceImage.style.height = '100px';
+
+            diceContainer.appendChild(diceImage);
+
+            document.getElementById('result').textContent = `You rolled a ${rolledNumber}!`;
+        }
+
+        document.getElementById('rollButton').addEventListener('click', displayDice);
+    </script>
+
+</body>
+</html>
